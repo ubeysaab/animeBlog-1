@@ -46,9 +46,17 @@ getPost()
 const handleDelete=async()=>{
   console.log(post.username==user.username)
   try{
-  await axios.delete('/posts/'+path,{data:{username:user.username}})   
-  // !we can't post the  config directly inside the delete method so we'll use data 
-  window.location.replace("/")
+    if(user.username=='admin'){
+      await axios.delete('/posts/'+path,{data:{username:"admin"}})
+      window.location.replace("/")
+    } 
+    else{
+      await axios.delete('/posts/'+path,{data:{username:user.username}})  
+ 
+      // !we can't post the  config directly inside the delete method so we'll use data 
+      window.location.replace("/")
+    }
+  
 
 
 }catch(e){}
@@ -101,20 +109,32 @@ const handleUpdate=async()=>{
         />
 
 
-        {updateMode?(<input type="text" value={title} className="singlePostTitleInput" onChange={(e)=>setTitle(e.target.value)}/>):(
-        <h1 className="singlePostTitle">
-          {post.title}
+        {updateMode?(<input type="text" value={title} className="singlePostTitleInput" onChange={(e)=>setTitle(e.target.value)}/>):
+        (
+         <h1 className="singlePostTitle">
+          {title}
 
-          {post.username===user.username&&(
+          {post.username===user.username&&
                // we put the question mark that's mean if there no user  the output would be undifined without throuwing a javaScript exception ERROR
          
             <div className="singlePostEdit">
               <i   className="singlePostIcon far fa-edit" onClick={()=> setUpdateMode(true)} ></i>
               <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete}></i>
-            </div>)
-          }
-        </h1>)
-        }
+            </div>
+          
+         }
+        </h1>
+
+
+        )}
+
+          {user.username=='admin'&&(<h1>
+              <div className="singlePostEdit">
+                {/* <i   className="singlePostIcon far fa-edit" onClick={()=> setUpdateMode(true)} ></i> */}
+                <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete}></i>
+              </div>
+          </h1>)}
+
         <div className="singlePostInfo">
           <span>
             Author:
@@ -126,7 +146,7 @@ const handleUpdate=async()=>{
           </span>
           <span>{new Date (post.createdAt).toDateString()}</span>
         </div>
-        {updateMode?(<textarea  className="singlePostDescInput"   value={desc} onChange={(e)=>setDesc(e.target.value)}                   />):(
+        {updateMode?(<textarea  className="singlePostDescInput"   value={desc} onChange={(e)=>setDesc(e.target.value)}/>):(
 
         <p className="singlePostDesc">
           {post.desc}

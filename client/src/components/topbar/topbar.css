@@ -5,13 +5,20 @@
   position: sticky;
   top: 0;
   display: flex;
+  /* flex: 12 ; */
   align-items: center;
   z-index: 999;
   font-family: "Josefin Sans", sans-serif;
 }
 
-.topLeft,
+.topLeft{
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .topRight {
+  /* daha fazla width ver cunku orada kullancinin resmi de gelecek  */
   flex: 3;
   display: flex;
   align-items: center;

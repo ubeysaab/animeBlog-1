@@ -75,7 +75,7 @@ const handleLogOut=()=>{
             </li>
           </ul>
         )}
-        <i className="topSearchIcon fas fa-search"></i>
+        {/* <i className="topSearchIcon fas fa-search"></i> */}
       </div>
     </div>
   );

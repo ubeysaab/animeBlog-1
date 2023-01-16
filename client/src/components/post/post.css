@@ -73,8 +73,9 @@
   margin-top: 15px;
   overflow: hidden;
   /*  TODO : BUNDAN SONRAKI CSS NE ISE YARADIGINI BI ARA ANLAMADIK CUNKU */
-  /* text-overflow: ellipsis; */
-  /* display: -webkit-box; */
-  /* -webkit-line-clamp: 4; */
-  /* -webkit-box-orient: vertical; */
+  /* cardlar yan yana gelmesi icin yariyor  */
+  text-overflow: ellipsis;
+  display: -webkit-box; 
+   -webkit-line-clamp: 4; 
+   -webkit-box-orient: vertical;
 }
