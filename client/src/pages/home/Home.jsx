@@ -7,6 +7,7 @@ import React from "react";
 
 import axios from "axios";
 import { useLocation } from "react-router";
+import Footer from "../../components/footer/Footer";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);// there we doesn't fetch any thing yet 
@@ -21,13 +22,37 @@ export default function Home() {
     };
     fetchPosts();
   }, [search]);
+
+
+// The current width of the viewport
+const [width,setWidth]=useState(window.innerWidth)
+  // The width below which the mobile view should be rendered
+const breakpoint=768;
+useEffect(()=>{
+  window.addEventListener('resize',()=>setWidth(window.innerWidth))
+  window.removeEventListener('resize',()=>setWidth(window.innerWidth))
+},[])
+
+
+
+
+
+
+
+
+
+
+
   return (
     <>
       <Header />
-      <div className="home">
-        <Posts posts={posts} />
-        <Sidebar />
-      </div>
+      
+        {width>breakpoint?(<div className="home"><Posts posts={posts} />
+        <Sidebar /></div>):(<><div className='home'> <Posts posts={posts}/></div><Footer/></>)}
+        
+      
+      
+
     </>
   );
 }

@@ -6,16 +6,28 @@ import Settings from "./pages/settings/Settings";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext,useEffect,useState} from "react";
 import { Context } from "./context/Context";
 import React from "react";
-
 function App() {
   const { user } = useContext(Context);
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     // TODO: if didn't use context im should give here i constant name user and give at like a props for each componennt below and it's not the best practice because we should prevent re-rendering every component each time when thsi user changes 
     <Router>
-      <TopBar />
+      <TopBar/>
       <Switch>
         <Route exact path="/">
           <Home />
